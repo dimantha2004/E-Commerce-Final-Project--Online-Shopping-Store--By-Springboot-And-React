@@ -12,7 +12,6 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
 @Entity
 @Table(name="users")
@@ -44,8 +43,54 @@ public class User {
     private Address address;
 
     @Column(name = "created_at")
-    private final LocalDateTime createdAt=LocalDateTime.now();
+    private LocalDateTime createdAt=LocalDateTime.now();
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static class Builder {
+        private String name;
+        private String email;
+        private String password;
+        private String phoneNumber;
+        private UserRole role;
+
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder email(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public Builder password(String password) {
+            this.password = password;
+            return this;
+        }
+
+        public Builder phoneNumber(String phoneNumber) {
+            this.phoneNumber = phoneNumber;
+            return this;
+        }
+
+        public Builder role(UserRole role) {
+            this.role = role;
+            return this;
+        }
+
+        public User build() {
+            User user = new User();
+            user.setName(this.name);
+            user.setEmail(this.email);
+            user.setPassword(this.password);
+            user.setPhoneNumber(this.phoneNumber);
+            user.setRole(this.role);
+            return user;
+        }
+    }
 }
 
 

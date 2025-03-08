@@ -1,6 +1,6 @@
 package edu.icet.exception;
 
-import edu.icet.dto.ResponseDto;
+import edu.icet.dto.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -11,30 +11,30 @@ import org.springframework.web.context.request.WebRequest;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ResponseDto> handleAllException(Exception ex, WebRequest request){
-        ResponseDto errorResponseDto = ResponseDto.builder()
+    public ResponseEntity<Response> handleAllException(Exception ex, WebRequest request){
+        Response errorResponse = Response.builder()
                 .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
                 .message(ex.getMessage())
                 .build();
-        return new ResponseEntity<>(errorResponseDto, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<ResponseDto> handleNotFoundException(NotFoundException ex, WebRequest request){
-        ResponseDto errorResponseDto = ResponseDto.builder()
+    public ResponseEntity<Response> handleNotFoundException(NotFoundException ex, WebRequest request){
+        Response errorResponse = Response.builder()
                 .status(HttpStatus.NOT_FOUND.value())
                 .message(ex.getMessage())
                 .build();
-        return new ResponseEntity<>(errorResponseDto, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(InvalidCredentialsException.class)
-    public ResponseEntity<ResponseDto> handleInvalidCredentialsExceptionException(InvalidCredentialsException ex, WebRequest request){
-        ResponseDto errorResponseDto = ResponseDto.builder()
+    public ResponseEntity<Response> handleInvalidCredentialsExceptionException(InvalidCredentialsException ex, WebRequest request){
+        Response errorResponse = Response.builder()
                 .status(HttpStatus.BAD_REQUEST.value())
                 .message(ex.getMessage())
                 .build();
-        return new ResponseEntity<>(errorResponseDto, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
 }

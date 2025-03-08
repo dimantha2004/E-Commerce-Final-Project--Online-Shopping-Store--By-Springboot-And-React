@@ -1,10 +1,8 @@
 package edu.icet.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -12,7 +10,7 @@ import java.util.List;
 @Data
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ResponseDto {
+public class Response {
 
     private int status;
     private String message;
@@ -25,10 +23,10 @@ public class ResponseDto {
     private String expirationTime;
 
     @Builder.Default
-    private int totalpage=0;
+    private int totalpage = 0;
 
     @Builder.Default
-    private long totalElement=0L;
+    private long totalElement = 0L;
 
     private AddressDto address;
 
