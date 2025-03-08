@@ -41,7 +41,7 @@ public class User {
     private List<OrderItem>orderItemList;
 
     @OneToOne(fetch = FetchType.LAZY,cascade =CascadeType.ALL)
-    private RabbitConnectionDetails.Address address;
+    private Address address;
 
     @Column(name = "created_at")
     private final LocalDateTime createdAt=LocalDateTime.now();
