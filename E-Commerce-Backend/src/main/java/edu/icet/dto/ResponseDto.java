@@ -11,8 +11,6 @@ import java.util.List;
 
 @Data
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResponseDto {
 
@@ -20,14 +18,17 @@ public class ResponseDto {
     private String message;
 
     @Builder.Default
-    private final LocalDateTime timestamp = LocalDateTime.now();
+    private LocalDateTime timestamp = LocalDateTime.now();
 
     private String token;
     private String role;
     private String expirationTime;
 
-    private int totalpage;
-    private long totalElement;
+    @Builder.Default
+    private int totalpage=0;
+
+    @Builder.Default
+    private long totalElement=0L;
 
     private AddressDto address;
 
