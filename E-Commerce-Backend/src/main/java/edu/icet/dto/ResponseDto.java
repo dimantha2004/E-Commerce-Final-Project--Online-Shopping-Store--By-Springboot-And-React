@@ -1,20 +1,26 @@
 package edu.icet.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResponseDto {
 
     private int status;
     private String message;
-    private final LocalDateTime timestamp=LocalDateTime.now();
+
+    @Builder.Default
+    private final LocalDateTime timestamp = LocalDateTime.now();
 
     private String token;
     private String role;
@@ -26,18 +32,14 @@ public class ResponseDto {
     private AddressDto address;
 
     private UserDto user;
-    private List<UserDto>userList;
+    private List<UserDto> userList;
 
     private CategoryDto category;
-    private List<CategoryDto>categoryList;
+    private List<CategoryDto> categoryList;
 
     private OrderItemDto orderItem;
-    private List<OrderItemDto>orderItemList;
+    private List<OrderItemDto> orderItemList;
 
     private OrderDto order;
-    private List<OrderDto>orderList;
-
-
-
-
+    private List<OrderDto> orderList;
 }
